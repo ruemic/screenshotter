@@ -21,13 +21,13 @@ var sites = {
   'google': 'http://www.google.com',
   'yahoo':  'http://www.yahoo.com'
 };
-var screenshotServiceUrl = 'http://localhost:3000/'; // must be running screenshot-app
+var screenshotServiceUrl = 'http://localhost:3300/?url='; // must be running screenshot-app
 
 // call the screenshot service using the current server as a callback
 var poller = function() {
   for (name in sites) {
-    var options = url.parse(screenshotServiceUrl + sites[name] + '?callback=http://localhost:8124/' + name);
+    var options = url.parse(screenshotServiceUrl + sites[name] + '&callback=http://localhost:8124/' + name);
     http.get(options, function(res) {});
   };
 }
-setInterval(poller, 60000);
+setInterval(poller, 5000);
