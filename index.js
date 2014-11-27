@@ -1,10 +1,11 @@
-/**
+  /**
  * Module dependencies.
  */
 var config = require('config');
 var express = require('express');
 var RasterizerService = require('./lib/rasterizerService');
 var FileCleanerService = require('./lib/fileCleanerService');
+var port = process.env.PORT || 3300;
 
 process.on('uncaughtException', function (err) {
   console.error("[uncaughtException]", err);
@@ -31,5 +32,5 @@ app.configure('development', function() {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 require('./routes')(app, config.server.useCors);
-app.listen(config.server.port);
-console.log('Express server listening on port ' + config.server.port);
+app.listen(port);
+console.log('Express server listening on port ' + port);
